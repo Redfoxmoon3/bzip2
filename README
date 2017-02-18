@@ -20,71 +20,9 @@ PDF (manual.pdf) or html (manual.html).  A plain-text version of the
 manual page is available as bzip2.txt.
 
 
-HOW TO BUILD -- UNIX
+HOW TO BUILD
 
-Type 'make'.  This builds the library libbz2.a and then the programs
-bzip2 and bzip2recover.  Six self-tests are run.  If the self-tests
-complete ok, carry on to installation:
-
-To install in /usr/local/bin, /usr/local/lib, /usr/local/man and
-/usr/local/include, type
-
-   make install
-
-To install somewhere else, eg, /xxx/yyy/{bin,lib,man,include}, type
-
-   make install PREFIX=/xxx/yyy
-
-If you are (justifiably) paranoid and want to see what 'make install'
-is going to do, you can first do
-
-   make -n install                      or
-   make -n install PREFIX=/xxx/yyy      respectively.
-
-The -n instructs make to show the commands it would execute, but not
-actually execute them.
-
-
-HOW TO BUILD -- UNIX, shared library libbz2.so.
-
-Do 'make -f Makefile-libbz2_so'.  This Makefile seems to work for
-Linux-ELF (RedHat 7.2 on an x86 box), with gcc.  I make no claims
-that it works for any other platform, though I suspect it probably
-will work for most platforms employing both ELF and gcc.
-
-bzip2-shared, a client of the shared library, is also built, but not
-self-tested.  So I suggest you also build using the normal Makefile,
-since that conducts a self-test.  A second reason to prefer the
-version statically linked to the library is that, on x86 platforms,
-building shared objects makes a valuable register (%ebx) unavailable
-to gcc, resulting in a slowdown of 10%-20%, at least for bzip2.
-
-Important note for people upgrading .so's from 0.9.0/0.9.5 to version
-1.0.X.  All the functions in the library have been renamed, from (eg)
-bzCompress to BZ2_bzCompress, to avoid namespace pollution.
-Unfortunately this means that the libbz2.so created by
-Makefile-libbz2_so will not work with any program which used an older
-version of the library.  I do encourage library clients to make the
-effort to upgrade to use version 1.0, since it is both faster and more
-robust than previous versions.
-
-
-HOW TO BUILD -- Windows 95, NT, DOS, Mac, etc.
-
-It's difficult for me to support compilation on all these platforms.
-My approach is to collect binaries for these platforms, and put them
-on the master web site (http://www.bzip.org).  Look there.  However
-(FWIW), bzip2-1.0.X is very standard ANSI C and should compile
-unmodified with MS Visual C.  If you have difficulties building, you
-might want to read README.COMPILATION.PROBLEMS.
-
-At least using MS Visual C++ 6, you can build from the unmodified
-sources by issuing, in a command shell: 
-
-   nmake -f makefile.msc
-
-(you may need to first run the MSVC-provided script VCVARS32.BAT
- so as to set up paths to the MSVC tools correctly).
+Invoke ./configure; make; make install (optional)
 
 
 VALIDATION
