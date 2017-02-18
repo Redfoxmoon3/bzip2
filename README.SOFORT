@@ -1,0 +1,50 @@
+sofort: portable software project template
+------------------------------------------
+
+motivation
+----------
+* take care of the elements that are common to all
+  (of my) cross-platform C projects, and which, for
+  the most part, do not (or at least should not)
+  contain any project-specific bits:
+  --> the build system;
+  --> the argv parser and usage screen generator;
+  --> the initial program driver;
+  --> and initial front-end utility.
+* zero external dependencies: the new project is
+  generated from the template project using basic
+  shell utilities, specifically cp, grep, and sed.
+
+build system
+------------
+* the project is conceived as a library with
+  an accompanying front-end utility.
+* the configure script is fast and skinny,
+  yet comprehensive.
+* unified logic for native and cross builds.
+* unified logic for in-tree and out-of-tree builds.
+
+driver
+------
+* the provided argv parser and usage screen generator
+  is powerful, flexible, and thread-safe; moreover,
+  it allows for a program driver that is entirely
+  independent of the chosen skin.
+
+skins
+-----
+* one benefit of the above design is that it allows the
+  front-end utility to have several distinct skins at
+  virtually no effort.
+
+modularity
+----------
+* the distinct driver and unit context, in combination
+  with the thread-safe argv parser, render the front-end
+  utility's inclusion in a multi-call binary trivial.
+
+extras
+------
+* the template provides the skeleton of an application
+  that may accept one or more files for its input, then
+  operate on each input file individually.
